@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Контакты — вариант B, буквы от курсора</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Lighthaus';src:url(media/06b2b5773bd2af156f13622b402a161c.otf) format('opentype');font-display:swap}
+body{margin:0}
+a{color:#111111}a:hover{color:#4A4A4A}
+</style>
+</helmet>
+<div style="position: relative; width: 1440px; height: {{ rootH }}; box-sizing: border-box; padding: 40px 72px 24px; background: #FFFFFF; color: #111111; font-family: 'Geologica', sans-serif; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between">
+<sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 15px">
+<span style="font-family: 'Lighthaus', 'Geologica', serif; font-size: 26px">Марина Спиридонова</span>
+<div style="display: flex; gap: 32px; align-items: center"><a href="#work" style="text-decoration: none">Работы</a><a href="#media" style="text-decoration: none">Медиа</a><a href="#contacts" style="text-decoration: underline; text-underline-offset: 6px">Контакты</a></div>
+<div style="display: flex; gap: 20px; align-items: center"><a href="https://t.me/marikonspi" style="text-decoration: none">Telegram ↗</a></div>
+</div>
+</sc-if>
+<div onPointerMove="{{ move }}" onPointerLeave="{{ leave }}" style="position: relative; padding: 40px 0; touch-action: none; cursor: none">
+<h2 aria-label="Давайте поговорим" style="margin: 0; font-family: 'Lighthaus', 'Geologica', serif; font-weight: 400; font-size: 150px; line-height: 0.95; user-select: none">
+<span aria-hidden="true" style="display: block; white-space: nowrap">
+<sc-for list="{{ row1 }}" as="l" hint-placeholder-count="7"><span data-l="{{ l.i }}" style="{{ l.style }}">{{ l.ch }}</span></sc-for>
+</span>
+<span aria-hidden="true" style="display: block; white-space: nowrap; padding-left: 160px">
+<sc-for list="{{ row2 }}" as="l" hint-placeholder-count="9"><span data-l="{{ l.i }}" style="{{ l.style }}">{{ l.ch }}</span></sc-for>
+</span>
+</h2>
+<span style="position: absolute; right: 0; bottom: 56px; font-size: 13px; color: #6B6B6B">{{ hint }}</span>
+<div aria-hidden="true" style="{{ cursorStyle }}"></div>
+</div>
+<div style="position: relative; margin: 46px -48px 0">
+<div style="position: absolute; left: 0; top: -44px; width: 190px; height: 46px; box-sizing: border-box; padding: 0 28px; background: #0B0B0B; border-radius: 22px 22px 0 0; display: flex; align-items: center; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #9C998F">Контакты</div>
+<div aria-hidden="true" style="position: absolute; left: 190px; top: -22px; width: 22px; height: 22px; background: radial-gradient(circle at 100% 0, transparent 21.5px, #0B0B0B 22px)"></div>
+<div style="background: #0B0B0B; border-radius: 0 32px 32px 32px; padding: 34px 48px 38px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 0.8fr); gap: 32px">
+<a href="https://t.me/marikonspi" style="display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: #FFFFFF"><span style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #9C998F">Telegram</span><span style="font-family: 'Lighthaus', 'Geologica', serif; font-size: 22px; text-transform: uppercase">@marikonspi ↗</span></a>
+<a href="tel:+79857370313" style="display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: #FFFFFF"><span style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #9C998F">Телефон</span><span style="font-family: 'Lighthaus', 'Geologica', serif; font-size: 22px; text-transform: uppercase">+7 985 737 03 13</span></a>
+<a href="mailto:marina.spiridonova.00@mail.ru" style="display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: #FFFFFF"><span style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #9C998F">Почта</span><span style="font-family: 'Lighthaus', 'Geologica', serif; font-size: 22px; text-transform: uppercase">marina.spiridonova.00<wbr>@mail.ru</span></a>
+<a href="https://www.linkedin.com/in/marikonspi/" style="display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: #FFFFFF"><span style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #9C998F">LinkedIn</span><span style="font-family: 'Lighthaus', 'Geologica', serif; font-size: 22px; text-transform: uppercase">marikonspi ↗</span></a>
+</div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"vh":{"editor":null,"default":900},"hideNav":{"editor":null,"default":false},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    this.w1 = 'Давайте'.split(''); this.w2 = 'поговорим'.split('');
+    const n = this.w1.length + this.w2.length;
+    const seed = (i) => { const x = Math.sin(i * 12.9898) * 43758.5453; return x - Math.floor(x); };
+    this.scatter = Array.from({ length: n }, (_, i) => ({ x: (seed(i) - 0.5) * 900, y: (seed(i + 40) - 0.5) * 700, r: (seed(i + 80) - 0.5) * 120 }));
+    this.state = { offs: this.scatter, active: false, assembled: false, cx: 0, cy: 0 };
+    this.timer = 0;
+  }
+  componentDidMount() {
+    this.timer = setTimeout(() => this.setState({ offs: this.scatter.map(() => ({ x: 0, y: 0, r: 0 })), assembled: true }), 250);
+  }
+  componentWillUnmount() { clearTimeout(this.timer); }
+  renderVals() {
+    const offs = this.state.offs;
+    const slow = !this.state.assembled || !this.state.active;
+    const mk = (ch, i) => {
+      const o = offs[i] || { x: 0, y: 0, r: 0 };
+      return { ch, i, style: 'display: inline-block; transform: translate(' + o.x.toFixed(1) + 'px, ' + o.y.toFixed(1) + 'px) rotate(' + o.r.toFixed(1) + 'deg); transition: transform ' + (slow ? '1.1s cubic-bezier(.16,1.3,.3,1) ' + (i * 0.035).toFixed(3) + 's' : '.45s cubic-bezier(.2,1.6,.4,1)') + '; will-change: transform' };
+    };
+    return {
+      row1: this.w1.map((c, i) => mk(c, i)),
+      row2: this.w2.map((c, i) => mk(c, i + this.w1.length)),
+      hint: this.state.active ? '' : 'Проведите курсором по надписи',
+      showNav: !this.props.hideNav, rootH: (this.props.vh || 900) + 'px',
+      cursorStyle: 'position: absolute; left: ' + (this.state.cx - 80) + 'px; top: ' + (this.state.cy - 80) + 'px; width: 160px; height: 160px; border-radius: 80px; pointer-events: none; display: ' + (this.state.active ? 'block' : 'none') + '; background: radial-gradient(circle closest-side, rgba(120,170,245,0.95) 0%, rgba(159,197,255,0.75) 30%, rgba(187,214,255,0.35) 62%, rgba(187,214,255,0) 100%); mix-blend-mode: multiply',
+      move: (e) => {
+        const els = e.currentTarget.querySelectorAll('[data-l]');
+        const box = e.currentTarget.getBoundingClientRect();
+        const k = box.width / 1296 || 1;
+        const R = 240;
+        const next = this.state.offs.slice();
+        els.forEach((el) => {
+          const i = Number(el.getAttribute('data-l'));
+          const o = next[i] || { x: 0, y: 0, r: 0 };
+          const r = el.getBoundingClientRect();
+          const cx = (r.left + r.width / 2) / k - o.x, cy = (r.top + r.height / 2) / k - o.y;
+          const dx = cx - e.clientX / k, dy = cy - e.clientY / k;
+          const d = Math.hypot(dx, dy) || 1;
+          if (d > R) { next[i] = { x: 0, y: 0, r: 0 }; return; }
+          const f = Math.pow(1 - d / R, 2) * 90;
+          next[i] = { x: dx / d * f, y: dy / d * f, r: (dx > 0 ? 1 : -1) * f * 0.25 };
+        });
+        this.setState({ offs: next, active: true, cx: (e.clientX - box.left) / k, cy: (e.clientY - box.top) / k });
+      },
+      leave: () => this.setState({ offs: this.state.offs.map(() => ({ x: 0, y: 0, r: 0 })), active: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
