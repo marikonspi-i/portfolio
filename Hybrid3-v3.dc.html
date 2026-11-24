@@ -173,10 +173,7 @@ class Component extends DCLogic {
     this.seq = 2;
     this.zTop = 2;
     this.focus = -1;
-    this.state = { slide: {}, focus: -1, open: [
-      { id: 0, k: 0, x: 170, y: 150, r: -4, z: 1 },
-      { id: 1, k: 1, x: 930, y: 120, r: 3, z: 2 }
-    ] };
+    this.state = { slide: {}, focus: -1, open: [] };
   }
   skillsData() {
     const corner = (s) => 'radial-gradient(circle ' + s + 'px at 0 0,#0000 98%,#000) top left/51% 51% no-repeat,radial-gradient(circle ' + s + 'px at 100% 0,#0000 98%,#000) top right/51% 51% no-repeat,radial-gradient(circle ' + s + 'px at 0 100%,#0000 98%,#000) bottom left/51% 51% no-repeat,radial-gradient(circle ' + s + 'px at 100% 100%,#0000 98%,#000) bottom right/51% 51% no-repeat';
@@ -186,7 +183,7 @@ class Component extends DCLogic {
     return [
       { label: 'Брендинг и айдентика', filter: 'brand', kind: 'Brand', compBg: '#FFFFFF', bg: '#F2F2F2', shape: 'Арка', w: 330, imgR: '160px 160px 10px 10px', imgH: 260, pad: '16px 16px 0', radius: '22px', mask: '',
         slides: [
-          { title: 'Брендинг и айдентика', img: B('830b704df848cd7189dbe35912e6cfd6'), meta: '', link: 'Кейсы →', bullets: ['Создаю бренды с нуля, делаю редизайн и ребрендинг.', 'Развиваю визуальный язык бренда и слежу, чтобы он оставался узнаваемым.', 'Заземляю брендинг в офлайн: магазины, ивенты, носители.'] }
+          { title: 'Брендинг и айдентика', img: B('830b704df848cd7189dbe35912e6cfd6'), meta: '', link: 'Кейсы →', bullets: ['Создаю бренды с нуля, делаю редизайн и ребрендинг.', 'Развиваю визуальный язык бренда и слежу, чтобы он оставался узнаваемым.', 'Раскатываю на омниканальные носители — от in-app до офлайн-поп-апов.'] }
         ] },
       { label: 'Арт-дирекшн', filter: 'art', kind: 'Art', compBg: '#1C1C1C', bg: '#0B0B0B', dark: true, shape: 'Рамка', w: 330, imgR: '4px', imgH: 220, pad: '30px 30px 6px', radius: '0', mask: 'corner',
         slides: [
